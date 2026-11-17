@@ -1,0 +1,6 @@
+{
+  "name": "Choose Your App – Toki & SUGO",
+  "description": "Choose your favorite app – Toki (Talk & link the world) or SUGO (Online Chat Party) – and continue your social journey.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

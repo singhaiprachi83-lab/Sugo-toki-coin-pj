@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enter User ID</title>
+  <meta name="description" content="Enter your User ID to verify and continue." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="userid.css" />
+</head>
+<body>
+
+  <!-- Dynamic gradient background -->
+  <div class="bg-gradient" id="bgGradient"></div>
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Back button -->
+    <button class="back-btn" id="backBtn" aria-label="Go back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+    </button>
+
+    <!-- App badge at top -->
+    <div class="app-badge" id="appBadge">
+      <img id="appBadgeIcon" src="" alt="" class="badge-icon" />
+      <span id="appBadgeName" class="badge-name"></span>
+    </div>
+
+    <!-- Title section -->
+    <header class="page-header">
+      <h1 class="page-title">Enter User ID</h1>
+      <p class="page-subtitle" id="pageSubtitle">Enter your User ID to continue</p>
+    </header>
+
+    <!-- Phone mockup preview -->
+    <div class="mockup-wrap">
+      <div class="mockup-container" id="mockupContainer">
+        <img src="user id.png" alt="App preview" class="mockup-img" id="mockupImg" decoding="async" />
+        <div class="mockup-overlay" id="mockupOverlay"></div>
+      </div>
+    </div>
+
+    <!-- ID Input area -->
+    <div class="input-section">
+      <div class="input-wrap" id="inputWrap">
+        <span class="input-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </span>
+        <input
+          type="tel"
+          id="userIdInput"
+          class="id-input"
+          placeholder="Enter your User ID"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          maxlength="10"
+          inputmode="numeric"
+          pattern="[0-9]{8,10}"
+        />
+        <button class="paste-btn" id="pasteBtn" aria-label="Paste from clipboard" title="Paste">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>
+      <p class="input-hint" id="inputHint"></p>
+    </div>
+
+    <!-- Continue button -->
+    <button class="continue-btn" id="continueBtn">
+      <span id="btnText">Continue</span>
+      <div class="btn-loader" id="btnLoader">
+        <div class="loader-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </button>
+
+    <!-- Security note -->
+    <div class="security-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      Your information is safe and secure
+    </div>
+
+  </div>
+
+  <!-- Result overlay -->
+  <div class="result-overlay" id="resultOverlay" aria-hidden="true">
+    <div class="result-box" id="resultBox">
+
+      <!-- App header -->
+      <div class="result-app-header">
+        <div class="result-app-icon-wrap">
+          <img id="resultAppIcon" src="" alt="" class="result-app-icon-large" />
+          <div class="result-verified-tick">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+        <h2 class="result-app-name" id="resultAppName"></h2>
+        <p class="result-user-id-line">User ID: <span id="resultUserId"></span></p>
+      </div>
+
+      <!-- Coin packages list -->
+      <div class="coin-packages-card" id="coinPackagesCard">
+        <div class="coin-packages-list" id="coinPackagesList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- No packages fallback -->
+      <p class="result-text" id="resultText" style="display:none;"></p>
+
+      <!-- VIP Accordion -->
+      <div class="vip-accordion" id="vipAccordion">
+
+        <!-- VIP Section -->
+        <div class="acc-block" id="vipBlock">
+          <button class="acc-header vip-header" id="vipToggle" onclick="toggleAccordion('vip')">
+            <div class="acc-header-left">
+              <span class="acc-crown">&#128081;</span>
+              <div class="acc-title-group">
+                <span class="acc-title">VIP</span>
+                <span class="acc-subtitle">VIP 1 – VIP 16</span>
+              </div>
+            </div>
+            <span class="acc-arrow" id="vipArrow">&#8964;</span>
+          </button>
+          <div class="acc-body" id="vipBody">
+            <div class="acc-grid" id="vipGrid">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SVIP Section -->
+        <div class="acc-block" id="svipBlock">
+          <button class="acc-header svip-header" id="svipToggle" onclick="toggleAccordion('svip')">
+            <div class="acc-header-left">
+              <span class="acc-crown">&#128142;</span>
+              <div class="acc-title-group">
+                <span class="acc-title">SVIP</span>
+                <span class="acc-subtitle">SVIP 1 – SVIP 7</span>
+              </div>
+            </div>
+            <span class="acc-arrow" id="svipArrow">&#8964;</span>
+          </button>
+          <div class="acc-body" id="svipBody">
+            <div class="acc-grid" id="svipGrid">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="result-home-btn" id="resultHomeBtn">&#8592; Back to Home</button>
+    </div>
+  </div>
+
+
+
+  <!-- Loading screen -->
+  <div class="loading-overlay" id="loadingOverlay" aria-hidden="true">
+    <div class="loading-content">
+      <div class="loading-spinner-wrap">
+        <div class="loading-spinner" id="loadingSpinner"></div>
+        <img id="loadingAppIcon" src="" alt="" class="loading-app-icon" />
+      </div>
+      <p class="loading-title" id="loadingTitle">Finding <span id="loadingAppName"></span> User...</p>
+      <div class="loading-steps">
+        <div class="step" id="step1">
+          <div class="step-dot"></div>
+          <span>Connecting to server</span>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-dot"></div>
+          <span>Searching user database</span>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-dot"></div>
+          <span>Verifying identity</span>
+        </div>
+      </div>
+      <div class="loading-bar-track">
+        <div class="loading-bar-fill" id="loadingBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       PAYMENT MODAL
+       ============================ -->
+  <div class="pay-overlay" id="payOverlay" aria-hidden="true">
+    <div class="pay-modal" id="payModal">
+
+      <!-- Header -->
+      <div class="pay-header">
+        <button class="pay-close-btn" id="payCloseBtn" aria-label="Close">&#10005;</button>
+        <h3 class="pay-title">Complete Payment</h3>
+        <p class="pay-order-info" id="payOrderInfo"></p>
+      </div>
+
+      <!-- QR Section -->
+      <div class="pay-qr-wrap">
+        <div class="pay-qr-box">
+          <img src="assets/aistudio/IMG-20260812-WA0007_9c79827d.jpg" alt="Payment QR Code" class="pay-qr-img" id="payQrImg" decoding="async" />
+          <div class="pay-qr-expire-badge" id="payExpireBadge">
+            <span class="pay-expire-dot"></span>
+            Live
+          </div>
+        </div>
+        <p class="pay-scan-hint">Scan QR with any UPI app to pay</p>
+      </div>
+
+      <!-- Timer -->
+      <div class="pay-timer-wrap" id="payTimerWrap">
+        <svg class="pay-timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="pay-timer-label">QR Expires in</span>
+        <span class="pay-timer-count" id="payTimer">05:00</span>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="pay-progress-track">
+        <div class="pay-progress-fill" id="payProgressFill"></div>
+      </div>
+
+      <!-- Amount display -->
+      <div class="pay-amount-row">
+        <span class="pay-amount-label">Amount to Pay</span>
+        <div class="pay-amount-right">
+          <span class="pay-original-price" id="payOriginalPrice" style="display:none;"></span>
+          <span class="pay-amount-value" id="payAmountValue"></span>
+        </div>
+      </div>
+
+      <!-- Coupon Code -->
+      <div class="pay-coupon-wrap" id="payCouponWrap">
+        <div class="pay-coupon-row">
+          <span class="pay-coupon-icon">🏷️</span>
+          <input
+            type="text"
+            id="payCouponInput"
+            class="pay-coupon-input"
+            placeholder="Have a coupon code?"
+            autocomplete="off"
+            maxlength="20"
+          />
+          <button class="pay-coupon-btn" id="payCouponBtn">Apply</button>
+        </div>
+        <p class="pay-coupon-msg" id="payCouponMsg"></p>
+      </div>
+
+      <!-- Divider -->
+      <div class="pay-divider">
+        <span>Enter Transaction ID after payment</span>
+      </div>
+
+
+      <!-- Transaction ID input -->
+      <div class="pay-txn-wrap">
+        <input
+          type="text"
+          id="payTxnInput"
+          class="pay-txn-input"
+          placeholder="Enter Transaction / UTR ID"
+          autocomplete="off"
+          maxlength="30"
+        />
+        <button class="pay-submit-btn" id="paySubmitBtn">
+          Confirm Payment &#10003;
+        </button>
+      </div>
+
+      <!-- WhatsApp section -->
+      <div class="pay-whatsapp-section">
+        <p class="pay-wa-note">
+          &#128737; Send screenshot in WhatsApp if order not received
+        </p>
+        <a
+          class="pay-wa-btn"
+          id="payWaBtn"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" class="wa-icon">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.554 4.1 1.523 5.824L0 24l6.335-1.493A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.028-1.38l-.36-.214-3.733.979.997-3.648-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+          </svg>
+          +91 84588 39843
+        </a>
+      </div>
+
+      <!-- Expired overlay (shown when timer hits 0) -->
+      <div class="pay-expired-overlay" id="payExpiredOverlay" style="display:none;">
+        <div class="pay-expired-box">
+          <span class="pay-expired-icon">&#9203;</span>
+          <p class="pay-expired-title">QR Code Expired</p>
+          <p class="pay-expired-sub">Please go back and try again</p>
+          <button class="pay-expired-btn" onclick="closePayment()">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="qrcode.min.js"></script>
+  <script src="userid.js"></script>
+</body>
+</html>

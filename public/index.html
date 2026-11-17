@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Your App – Toki & SUGO</title>
+  <meta name="description" content="Choose your favorite app – Toki (Talk & link the world) or SUGO (Online Chat Party) – and continue your social journey." />
+  <meta property="og:title" content="Choose Your App – Toki & SUGO" />
+  <meta property="og:description" content="Choose your favorite app – Toki (Talk & link the world) or SUGO (Online Chat Party) – and continue your social journey." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="prefetch" href="userid.html" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated background blobs -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+  <div class="bg-blob blob-4"></div>
+
+  <!-- Floating sparkles -->
+  <div class="sparkle s1">&#10022;</div>
+  <div class="sparkle s2">&#10023;</div>
+  <div class="sparkle s3">&#10022;</div>
+  <div class="sparkle s4">&#10023;</div>
+  <div class="sparkle s5">&#10022;</div>
+
+  <!-- Dot grid decoration -->
+  <div class="dot-grid dot-left"></div>
+  <div class="dot-grid dot-right"></div>
+
+  <main class="container">
+
+    <!-- Header -->
+    <header class="hero-header">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Connect with the world
+      </div>
+      <h1 class="hero-title">
+        Which app<br />do you use?
+      </h1>
+      <p class="hero-subtitle">Choose your favorite app to continue</p>
+    </header>
+
+    <!-- App Cards -->
+    <section class="cards-section" aria-label="App selection">
+
+      <!-- Toki Card -->
+      <article class="app-card" id="card-toki" tabindex="0" role="button" aria-label="Select Toki – Talk and link the world">
+        <div class="card-glow toki-glow"></div>
+        <div class="card-inner">
+          <div class="app-icon-wrap toki-icon-wrap">
+            <img src="TOKI.png" alt="Toki App Icon" class="app-icon" decoding="async" />
+            <div class="icon-shine"></div>
+          </div>
+          <div class="app-info">
+            <h2 class="app-name">Toki</h2>
+            <p class="app-tagline">Talk &amp; link the world</p>
+            <div class="app-tags">
+              <span class="tag">&#127757; Global</span>
+              <span class="tag">&#128172; Chat</span>
+              <span class="tag">&#128279; Connect</span>
+            </div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-ripple"></div>
+      </article>
+
+      <!-- SUGO Card -->
+      <article class="app-card" id="card-sugo" tabindex="0" role="button" aria-label="Select SUGO – Online Chat Party">
+        <div class="card-glow sugo-glow"></div>
+        <div class="card-inner">
+          <div class="app-icon-wrap sugo-icon-wrap">
+            <img src="SUGO.png" alt="SUGO App Icon" class="app-icon" decoding="async" />
+            <div class="icon-shine"></div>
+          </div>
+          <div class="app-info">
+            <h2 class="app-name">SUGO</h2>
+            <p class="app-tagline">Online Chat Party</p>
+            <div class="app-tags">
+              <span class="tag">&#127881; Party</span>
+              <span class="tag">&#127897; Voice</span>
+              <span class="tag">&#10024; Fun</span>
+            </div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-ripple"></div>
+      </article>
+
+    </section>
+
+    <!-- Footer note -->
+    <footer class="footer-note">
+      <p>You can switch anytime from your profile settings</p>
+    </footer>
+
+  </main>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
